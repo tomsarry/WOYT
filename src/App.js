@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
-import FileInput from "./components/FileInput";
+import "./css/main.scss";
+import Content from "./components/Content";
+// import ScrollReveal from "scrollreveal";
 
 function App() {
   return (
@@ -8,7 +10,7 @@ function App() {
       {/* logo, help, donate, socials */}
       {/* <Header /> */}
 
-      <FileInput />
+      <Content />
 
       {/* <Footer /> */}
     </div>

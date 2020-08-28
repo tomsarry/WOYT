@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-
 import axios from "axios";
+import ContainerYear, { YearInfo } from "./ContainerYear";
 
-interface IProps {}
+type IProps = {};
 
-interface IState {
+type IState = {
   totalNumber: number;
   sampleSize: number;
   missingLinks: number;
@@ -12,14 +12,10 @@ interface IState {
   totalDurationSampleS: number;
   totalDurationS: number;
   avgDurationS: number;
-  yearInfo: YearInfo;
-}
+  yearInfo: YearInfo[];
+};
 
-interface YearInfo {
-  [key: string]: number;
-}
-
-class FileInput extends Component<IProps, IState> {
+class Content extends Component<IProps, IState> {
   fileInput: any;
   constructor(props: any) {
     super(props);
@@ -34,23 +30,11 @@ class FileInput extends Component<IProps, IState> {
       totalDurationSampleS: 0,
       totalDurationS: 0,
       avgDurationS: 0,
-      yearInfo: {},
+      yearInfo: [],
     };
+
     this.fileInput = React.createRef();
   }
-
-  getListYear = () => {
-    const data = this.state.yearInfo;
-
-    var listVideosYear = Object.keys(data).map((key) => (
-      <li key={key}>
-        <h3>{key}</h3>
-        {data[key]}
-      </li>
-    ));
-
-    return listVideosYear;
-  };
 
   handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -93,10 +77,9 @@ class FileInput extends Component<IProps, IState> {
             missingLinksSample: basicInfo.MissingLinksSample,
             totalDurationSampleS: advInfo.TotalDurationSample,
             totalDurationS: advInfo.TotalDurationSeconds,
-            yearInfo: advInfo.YearInfo,
+            yearInfo: advInfo.YearInfos,
             avgDurationS: advInfo.AvgDuration,
           });
-          return result;
         })
         .catch((err) => {
           console.log("Error : " + err);
@@ -108,6 +91,7 @@ class FileInput extends Component<IProps, IState> {
   render() {
     return (
       <React.Fragment>
+        <h1 className="title">Wasted on YT</h1>
         <form onSubmit={this.handleSubmit} encType="multipart/form-data">
           <label>
             Choisir un fichier :<input type="file" ref={this.fileInput}></input>
@@ -117,65 +101,67 @@ class FileInput extends Component<IProps, IState> {
           <button type="submit">Envoyer</button>
         </form>
 
-        <div>
-          <p>
-            {this.state.totalNumber
-              ? "Total number of videos found : " + this.state.totalNumber
-              : ""}
-          </p>
+        <p>
+          {this.state.totalNumber
+            ? "Total number of videos found : " + this.state.totalNumber
+            : ""}
+        </p>
 
-          <p>
-            {this.state.sampleSize
-              ? "Number of videos to check for an accurate sample : " +
-                this.state.sampleSize
-              : ""}
-          </p>
+        <p>
+          {this.state.sampleSize
+            ? "Number of videos to check for an accurate sample : " +
+              this.state.sampleSize
+            : ""}
+        </p>
 
-          <p>
-            {this.state.missingLinksSample || this.state.totalNumber
-              ? "Number of missing links on the sample : " +
-                this.state.missingLinksSample
-              : ""}
-          </p>
+        <p>
+          {this.state.missingLinksSample || this.state.totalNumber
+            ? "Number of missing links on the sample : " +
+              this.state.missingLinksSample
+            : ""}
+        </p>
 
-          <p>
-            {this.state.missingLinks
-              ? "Missing links in total : " + this.state.missingLinks
-              : ""}
-          </p>
+        <p>
+          {this.state.missingLinks
+            ? "Missing links in total : " + this.state.missingLinks
+            : ""}
+        </p>
 
-          <p>
-            {this.state.totalDurationSampleS
-              ? "Total duration of sample (in secs) : " +
-                this.state.totalDurationSampleS
-              : ""}
-          </p>
+        <p>
+          {this.state.totalDurationSampleS
+            ? "Total duration of sample (in secs) : " +
+              this.state.totalDurationSampleS
+            : ""}
+        </p>
 
-          <p>
-            {this.state.totalDurationS
-              ? "Total duration of set (in secs) : " + this.state.totalDurationS
-              : ""}
-          </p>
+        <p>
+          {this.state.totalDurationS
+            ? "Total duration of set (in secs) : " + this.state.totalDurationS
+            : ""}
+        </p>
 
-          <p>
-            {this.state.totalDurationS
-              ? "Total duration of set (in hours) : " +
-                Math.round((this.state.totalDurationS / 3600) * 100) / 100
-              : ""}
-          </p>
+        <p>
+          {this.state.totalDurationS
+            ? "Total duration of set (in hours) : " +
+              Math.round((this.state.totalDurationS / 3600) * 100) / 100
+            : ""}
+        </p>
 
-          <p>
-            {this.state.avgDurationS
-              ? "Average duration of videos watched (in secs): " +
-                this.state.avgDurationS
-              : ""}
-          </p>
+        <p>
+          {this.state.avgDurationS
+            ? "Average duration of videos watched (in secs): " +
+              this.state.avgDurationS
+            : ""}
+        </p>
 
-          <p>{this.state.yearInfo ? <ul>{this.getListYear()}</ul> : ""}</p>
-        </div>
+        {this.state.yearInfo ? (
+          <ContainerYear data={this.state.yearInfo} />
+        ) : (
+          ""
+        )}
       </React.Fragment>
     );
   }
 }
 
-export default FileInput;
+export default Content;

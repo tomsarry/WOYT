@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+@import "card", "container";
+
+.title {
+  color: red;
+}
+
+.App {
+  background: rgb(243, 243, 243);
+  min-height: 200vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
