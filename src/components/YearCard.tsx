@@ -16,7 +16,10 @@ export const YearCard: React.SFC<YearCardProps> = ({ Year, Value }) => {
       reset: true,
       scale: 0.9,
       opacity: 1,
-      duration: 1100,
+      duration: 1000,
+      origin: "bottom",
+      distance: "20px",
+      delay: 100,
     });
     sr.reveal(".yearCard");
   });

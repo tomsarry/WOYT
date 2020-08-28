@@ -1,12 +1,9 @@
 .container {
   width: 90%;
-  min-height: 120px;
-  //   border: 1px solid rgb(218, 218, 218);
   background: #fff;
+  height: auto;
   margin: 20px;
   box-shadow: 0px 0px 3px 1px rgb(218, 218, 218);
-
-  //   padding: 25px;
   border-radius: 10px;
 }
 
@@ -17,6 +14,9 @@
   font-size: 1.3rem;
   border-radius: 10px 10px 0 0;
   min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   h2 {
     width: 80%;
@@ -31,8 +31,53 @@
   justify-content: center;
   flex-wrap: wrap;
   padding: 10px;
+  transform-origin: top;
+  transform: scaleY(1);
+  transition: transform 0.3s ease;
+  height: auto;
+  overflow: hidden;
 
   * {
     flex: 1 1 160px;
   }
+}
+
+.btn-resize {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid rgb(212, 212, 212);
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0pt 1px rgb(117, 231, 247);
+  }
+}
+
+.more {
+  background: rgb(49, 202, 19);
+}
+
+.less {
+  background: rgb(196, 31, 31);
+}
+
+.opened {
+  .yearCard {
+    display: inline-block;
+  }
+  visibility: visible;
+  transform: scaleY(1);
+}
+
+.closed {
+  .yearCard {
+    display: none;
+  }
+  visibility: hidden;
+  transform: scaleY(0);
 }
