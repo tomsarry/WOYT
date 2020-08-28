@@ -1,6 +1,5 @@
-// import * as React from "react";
 import YearCard from "./YearCard";
-// import ScrollReveal from "scrollreveal";
+
 import ScrollReveal from "scrollreveal";
 import React, { useState, useEffect } from "react";
 
@@ -14,19 +13,20 @@ export type YearInfo = {
 };
 
 type ContainerState = {
-  Open: Boolean;
   Info?: YearInfo[];
 };
 
 const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
-  const [yVal, setYVal] = useState<ContainerState>({ Open: true });
+  const [yVal, setYVal] = useState<YearInfo[]>();
+  const [open, setOpen] = useState<Boolean>(true);
 
   const handleClick = () => {
-    setYVal({ Open: !yVal.Open, Info: data });
+    setYVal(data);
+    setOpen(!open);
   };
 
   const getClassBtn = () => {
-    if (yVal.Open) {
+    if (open) {
       return "btn-resize less";
     } else {
       return "btn-resize more";
@@ -34,7 +34,7 @@ const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
   };
 
   const getClassContainer = () => {
-    if (yVal.Open) {
+    if (open) {
       return "content-container opened";
     } else {
       return "content-container closed";
@@ -42,8 +42,8 @@ const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
   };
 
   const getYearInfo = () => {
-    if (yVal.Info) {
-      const yearValues = yVal.Info!.map((val) => (
+    if (yVal) {
+      const yearValues = yVal!.map((val) => (
         <YearCard key={val.Year} Year={val.Year} Value={val.Value} />
       ));
       return yearValues;
@@ -53,7 +53,7 @@ const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
   };
 
   useEffect(() => {
-    setYVal({ Info: data, Open: yVal.Open });
+    setYVal(data);
     const sr = ScrollReveal({
       reset: false,
       scale: 0.9,
@@ -68,7 +68,7 @@ const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
       <div className="title-container">
         <h2>Videos seen each year</h2>
         <button className={getClassBtn()} onClick={() => handleClick()}>
-          {yVal!.Open ? "-" : "+"}
+          {open ? "-" : "+"}
         </button>
       </div>
       <div className={getClassContainer()}>{getYearInfo()}</div>

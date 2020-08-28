@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
 
 export interface YearCardProps {
@@ -8,10 +8,7 @@ export interface YearCardProps {
 }
 
 export const YearCard: React.SFC<YearCardProps> = ({ Year, Value }) => {
-  // const [val, setVal] = useState<YearCardProps>();
-
   useEffect(() => {
-    // setVal({ Year, Value });
     const sr = ScrollReveal({
       reset: true,
       scale: 0.9,
