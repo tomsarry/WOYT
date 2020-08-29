@@ -12,8 +12,10 @@
   color: #fff;
   padding: 10px 40px;
   font-size: 1.3rem;
-  border-radius: 10px 10px 0 0;
+  // border-radius: 10px 10px 0 0;
+  border-radius: 10px;
   min-width: 100%;
+  box-shadow: 0px 0px 2px 1px rgb(172, 172, 172);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,10 +49,10 @@
   height: 30px;
   border-radius: 5px;
   color: white;
-  font-size: 1.5em;
   text-align: center;
   line-height: 30px;
   border: 1px solid rgb(212, 212, 212);
+  font-weight: bold;
 
   &:focus {
     outline: none;
@@ -67,17 +69,30 @@
 }
 
 .opened {
-  .yearCard {
-    display: inline-block;
+  .content-container {
+    padding: 10px;
   }
-  visibility: visible;
-  transform: scaleY(1);
+
+  .card {
+    display: inline-block;
+    opacity: 1;
+  }
+  .note {
+    display: block;
+    opacity: 1;
+  }
 }
 
 .closed {
-  .yearCard {
-    display: none;
+  .content-container {
+    padding: 0px;
   }
-  visibility: hidden;
-  transform: scaleY(0);
+  .card {
+    display: none;
+    opacity: 0;
+  }
+  .note {
+    display: none;
+    opacity: 0;
+  }
 }

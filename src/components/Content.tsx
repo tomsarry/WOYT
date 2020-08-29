@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ContainerYear, { YearInfo } from "./ContainerYear";
+import ContainerWasted from "./ContainerWasted";
 
 type IProps = {};
 
@@ -154,9 +155,22 @@ class Content extends Component<IProps, IState> {
             : ""}
         </p>
 
-        {this.state.yearInfo ? (
+        {this.state.totalNumber ? (
+          <ContainerWasted totalS={this.state.totalDurationS} />
+        ) : (
+          ""
+        )}
+
+        {this.state.yearInfo.length > 0 ? (
           <ContainerYear data={this.state.yearInfo} />
         ) : (
+          // <ContainerYear
+          //   data={[
+          //     { Year: 2015, Value: 3945 },
+          //     { Year: 2016, Value: 1248 },
+          //     { Year: 2017, Value: 9810 },
+          //   ]}
+          // />
           ""
         )}
       </React.Fragment>

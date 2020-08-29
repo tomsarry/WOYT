@@ -1,0 +1,18 @@
+.note {
+  width: auto;
+  background: rgba(255, 251, 0, 0.274);
+  color: black;
+  font-size: 1.3rem;
+  margin: 30px;
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: 2px solid #ff9900bd;
+  border-left: 15px solid #ff9900bd;
+  border-radius: 5px;
+
+  span {
+    font-weight: bold;
+    color: rgb(48, 48, 48);
+    font-size: 1.5rem;
+  }
+}

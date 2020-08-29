@@ -1,7 +1,7 @@
-import YearCard from "./YearCard";
-
 import ScrollReveal from "scrollreveal";
 import React, { useState, useEffect } from "react";
+import { getClassBtn, getClassContainer } from "./Container";
+import Card from "./Card";
 
 export type YearInfoProps = {
   data: YearInfo[];
@@ -21,34 +21,17 @@ const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
   const [open, setOpen] = useState<Boolean>(true);
 
   const handleClick = () => {
-    setYVal(data);
     setOpen(!open);
-  };
-
-  const getClassBtn = () => {
-    if (open) {
-      return "btn-resize less";
-    } else {
-      return "btn-resize more";
-    }
-  };
-
-  const getClassContainer = () => {
-    if (open) {
-      return "content-container opened";
-    } else {
-      return "content-container closed";
-    }
   };
 
   const getYearInfo = () => {
     if (yVal) {
       const yearValues = yVal!.map((val) => (
-        <YearCard key={val.Year} Year={val.Year} Value={val.Value} />
+        <Card key={val.Year} title={val.Year} value={val.Value} />
       ));
       return yearValues;
     } else {
-      return "";
+      return "Error, no values to display.";
     }
   };
 
@@ -64,14 +47,14 @@ const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="container">
+    <div className={getClassContainer(open)}>
       <div className="title-container">
         <h2>Videos seen each year</h2>
-        <button className={getClassBtn()} onClick={() => handleClick()}>
+        <button className={getClassBtn(open)} onClick={() => handleClick()}>
           {open ? "-" : "+"}
         </button>
       </div>
-      <div className={getClassContainer()}>{getYearInfo()}</div>
+      <div className="content-container">{getYearInfo()}</div>
     </div>
   );
 };
