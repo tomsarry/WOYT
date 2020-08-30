@@ -45,6 +45,7 @@ const ContainterSample: React.SFC<ContainerSampleProps> = ({
 
     const display = titles.map((title, index) => (
       <Card
+        key={index}
         title={title}
         value={values[index]}
         big={true}

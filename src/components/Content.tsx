@@ -3,6 +3,8 @@ import axios from "axios";
 import ContainerYear, { YearInfo } from "./ContainerYear";
 import ContainerWasted from "./ContainerWasted";
 import ContainterSample from "./ContainerSample";
+import ContainerGeneral from "./ContainerGereral";
+import { getNumberYears } from "./Container";
 
 type IProps = {};
 
@@ -104,58 +106,15 @@ class Content extends Component<IProps, IState> {
           <button type="submit">Envoyer</button>
         </form>
 
-        <p>
-          {data.totalNumber
-            ? "Total number of videos found : " + data.totalNumber
-            : ""}
-        </p>
-
-        <p>
-          {data.sampleSize
-            ? "Number of videos to check for an accurate sample : " +
-              data.sampleSize
-            : ""}
-        </p>
-
-        <p>
-          {data.missingLinksSample || data.totalNumber
-            ? "Number of missing links on the sample : " +
-              data.missingLinksSample
-            : ""}
-        </p>
-
-        <p>
-          {data.missingLinks
-            ? "Missing links in total : " + data.missingLinks
-            : ""}
-        </p>
-
-        <p>
-          {data.totalDurationSampleS
-            ? "Total duration of sample (in secs) : " +
-              data.totalDurationSampleS
-            : ""}
-        </p>
-
-        <p>
-          {data.totalDurationS
-            ? "Total duration of set (in secs) : " + data.totalDurationS
-            : ""}
-        </p>
-
-        <p>
-          {data.totalDurationS
-            ? "Total duration of set (in hours) : " +
-              Math.round((data.totalDurationS / 3600) * 100) / 100
-            : ""}
-        </p>
-
-        <p>
-          {data.avgDurationS
-            ? "Average duration of videos watched (in secs): " +
-              data.avgDurationS
-            : ""}
-        </p>
+        {data.totalNumber ? (
+          <ContainerGeneral
+            nbVideo={data.totalNumber}
+            nbYears={data.yearInfo ? getNumberYears(data.yearInfo) : 0}
+            missingLinks={data.missingLinks}
+          />
+        ) : (
+          ""
+        )}
 
         {data.totalNumber ? (
           <ContainerWasted
@@ -166,18 +125,7 @@ class Content extends Component<IProps, IState> {
           ""
         )}
 
-        {data.yearInfo.length > 0 ? (
-          <ContainerYear data={data.yearInfo} />
-        ) : (
-          // <ContainerYear
-          //   data={[
-          //     { Year: 2015, Value: 3945 },
-          //     { Year: 2016, Value: 1248 },
-          //     { Year: 2017, Value: 9810 },
-          //   ]}
-          // />
-          ""
-        )}
+        {data.yearInfo.length > 0 ? <ContainerYear data={data.yearInfo} /> : ""}
 
         {data.sampleSize ? (
           <ContainterSample

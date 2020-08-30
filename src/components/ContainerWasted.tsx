@@ -60,7 +60,7 @@ const ContainerWasted: React.SFC<ContainerWastedProps> = ({
       </div>
       <Note
         value={
-          "Values computed are only an approximation. As of right now, we cannot see how long each video has been watched, so the numbers reflect the case where the user was watching every single video he cliked on, until the end, at base speed (x1 time multiplier)."
+          "Values computed are only an approximation. As of right now, we cannot know how long each video has been watched. Thus, the numbers reflect the case where the user was watching every single video he cliked on, until the end, at base speed (x1 time multiplier)."
         }
       />
     </div>
