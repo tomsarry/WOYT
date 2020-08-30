@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ContainerYear, { YearInfo } from "./ContainerYear";
 import ContainerWasted from "./ContainerWasted";
+import ContainterSample from "./ContainerSample";
 
 type IProps = {};
 
@@ -90,6 +91,7 @@ class Content extends Component<IProps, IState> {
   };
 
   render() {
+    const data = this.state;
     return (
       <React.Fragment>
         <h1 className="title">Wasted on YT</h1>
@@ -103,66 +105,69 @@ class Content extends Component<IProps, IState> {
         </form>
 
         <p>
-          {this.state.totalNumber
-            ? "Total number of videos found : " + this.state.totalNumber
+          {data.totalNumber
+            ? "Total number of videos found : " + data.totalNumber
             : ""}
         </p>
 
         <p>
-          {this.state.sampleSize
+          {data.sampleSize
             ? "Number of videos to check for an accurate sample : " +
-              this.state.sampleSize
+              data.sampleSize
             : ""}
         </p>
 
         <p>
-          {this.state.missingLinksSample || this.state.totalNumber
+          {data.missingLinksSample || data.totalNumber
             ? "Number of missing links on the sample : " +
-              this.state.missingLinksSample
+              data.missingLinksSample
             : ""}
         </p>
 
         <p>
-          {this.state.missingLinks
-            ? "Missing links in total : " + this.state.missingLinks
+          {data.missingLinks
+            ? "Missing links in total : " + data.missingLinks
             : ""}
         </p>
 
         <p>
-          {this.state.totalDurationSampleS
+          {data.totalDurationSampleS
             ? "Total duration of sample (in secs) : " +
-              this.state.totalDurationSampleS
+              data.totalDurationSampleS
             : ""}
         </p>
 
         <p>
-          {this.state.totalDurationS
-            ? "Total duration of set (in secs) : " + this.state.totalDurationS
+          {data.totalDurationS
+            ? "Total duration of set (in secs) : " + data.totalDurationS
             : ""}
         </p>
 
         <p>
-          {this.state.totalDurationS
+          {data.totalDurationS
             ? "Total duration of set (in hours) : " +
-              Math.round((this.state.totalDurationS / 3600) * 100) / 100
+              Math.round((data.totalDurationS / 3600) * 100) / 100
             : ""}
         </p>
 
         <p>
-          {this.state.avgDurationS
+          {data.avgDurationS
             ? "Average duration of videos watched (in secs): " +
-              this.state.avgDurationS
+              data.avgDurationS
             : ""}
         </p>
 
-        {this.state.totalNumber ? (
-          <ContainerWasted totalS={this.state.totalDurationS} />
+        {data.totalNumber ? (
+          <ContainerWasted
+            totalS={data.totalDurationS}
+            avgDurationS={data.avgDurationS}
+          />
         ) : (
           ""
         )}
 
-        {this.state.yearInfo.length > 0 ? (
-          <ContainerYear data={this.state.yearInfo} />
+        {data.yearInfo.length > 0 ? (
+          <ContainerYear data={data.yearInfo} />
         ) : (
           // <ContainerYear
           //   data={[
@@ -171,6 +176,16 @@ class Content extends Component<IProps, IState> {
           //     { Year: 2017, Value: 9810 },
           //   ]}
           // />
+          ""
+        )}
+
+        {data.sampleSize ? (
+          <ContainterSample
+            nbSample={data.sampleSize}
+            durationSample={data.totalDurationSampleS}
+            brokenLinksSample={data.missingLinksSample}
+          />
+        ) : (
           ""
         )}
       </React.Fragment>

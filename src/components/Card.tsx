@@ -7,9 +7,15 @@ export interface CardProps {
   title: string | number;
   value: string | number;
   unit?: string;
+  big?: boolean;
 }
 
-export const Card: React.SFC<CardProps> = ({ title, value, unit = "" }) => {
+export const Card: React.SFC<CardProps> = ({
+  title,
+  value,
+  unit = "",
+  big = false,
+}) => {
   useEffect(() => {
     const sr = ScrollReveal({
       reset: true,
@@ -20,8 +26,16 @@ export const Card: React.SFC<CardProps> = ({ title, value, unit = "" }) => {
     });
     sr.reveal(".card");
   });
+
+  const getClass = () => {
+    if (big) {
+      return "card big";
+    } else {
+      return "card";
+    }
+  };
   return (
-    <span className="card">
+    <span className={getClass()}>
       <div className="card-title">{title}</div>
       <div className="card-content">
         {value} {unit}

@@ -6,17 +6,24 @@ import Note from "./Note";
 
 export interface ContainerWastedProps {
   totalS: number;
+  avgDurationS: number;
 }
 
-const ContainerWasted: React.SFC<ContainerWastedProps> = ({ totalS }) => {
-  const [duration, setDuration] = useState<number>(0);
+const ContainerWasted: React.SFC<ContainerWastedProps> = ({
+  totalS,
+  avgDurationS,
+}) => {
+  const [info, setInfo] = useState<ContainerWastedProps>({
+    totalS: 0,
+    avgDurationS: 0,
+  });
   const [open, setOpen] = useState<Boolean>(true);
   const handleClick = () => {
     setOpen(!open);
   };
 
   useEffect(() => {
-    setDuration(totalS);
+    setInfo({ totalS: totalS, avgDurationS: avgDurationS });
   }, [totalS]);
   return (
     <div className={getClassContainer(open)}>
@@ -27,21 +34,28 @@ const ContainerWasted: React.SFC<ContainerWastedProps> = ({ totalS }) => {
         </button>
       </div>
       <div className="content-container">
-        <Card key={"seconds"} title={"seconds"} value={duration} />
+        <Card key={"seconds"} title={"seconds"} value={info.totalS} />
         <Card
           key={"minutes"}
           title={"minutes"}
-          value={Math.round((duration * 10) / 60) / 10}
+          value={Math.round((info.totalS * 10) / 60) / 10}
         />
         <Card
           key={"hours"}
           title={"hours"}
-          value={Math.round((duration * 10) / 3600) / 10}
+          value={Math.round((info.totalS * 10) / 3600) / 10}
         />
         <Card
           key={"days"}
           title={"days"}
-          value={Math.round((duration * 10) / (3600 * 24)) / 10}
+          value={Math.round((info.totalS * 10) / (3600 * 24)) / 10}
+        />
+
+        <Card
+          key={"avg"}
+          title={"average length"}
+          value={info.avgDurationS}
+          unit={"seconds"}
         />
       </div>
       <Note

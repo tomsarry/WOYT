@@ -1,4 +1,3 @@
-import ScrollReveal from "scrollreveal";
 import React, { useState, useEffect } from "react";
 import { getClassBtn, getClassContainer } from "./Container";
 import Card from "./Card";
@@ -10,10 +9,6 @@ export type YearInfoProps = {
 export type YearInfo = {
   Year: number;
   Value: number;
-};
-
-type ContainerState = {
-  Info?: YearInfo[];
 };
 
 const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
@@ -37,13 +32,13 @@ const ContainerYear: React.SFC<YearInfoProps> = ({ data }) => {
 
   useEffect(() => {
     setYVal(data);
-    const sr = ScrollReveal({
-      reset: false,
-      scale: 0.9,
-      opacity: 1,
-      duration: 1100,
-    });
-    sr.reveal(".container");
+    // const sr = ScrollReveal({
+    //   reset: false,
+    //   scale: 0.9,
+    //   opacity: 1,
+    //   duration: 1100,
+    // });
+    // sr.reveal(".container");
   }, [data]);
 
   return (
