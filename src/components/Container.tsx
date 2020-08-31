@@ -19,7 +19,7 @@ const getClassContainer = (open: Boolean): string => {
 const getNumberYears = (yearInfo: YearInfo[]) => {
   if (!yearInfo) {
     return 0;
-  } else if (yearInfo.length == 1) {
+  } else if (yearInfo.length === 1) {
     return 1;
   }
   let lastYear = yearInfo[yearInfo.length - 1].Year;

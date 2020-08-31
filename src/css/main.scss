@@ -5,7 +5,9 @@
   border: 0;
 }
 
-@import "card", "container", "fonts", "note", "mobile";
+$primary: rgb(55, 59, 66);
+
+@import "card", "container", "fonts", "note", "mobile", "fileinput", "header";
 
 .title {
   color: red;
@@ -15,7 +17,6 @@
   background: rgb(243, 243, 243);
   min-height: 100vh;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   width: 100%;

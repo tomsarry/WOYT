@@ -24,7 +24,7 @@ const ContainerWasted: React.SFC<ContainerWastedProps> = ({
 
   useEffect(() => {
     setInfo({ totalS: totalS, avgDurationS: avgDurationS });
-  }, [totalS]);
+  }, [totalS, avgDurationS]);
   return (
     <div className={getClassContainer(open)}>
       <div className="title-container">
@@ -53,9 +53,10 @@ const ContainerWasted: React.SFC<ContainerWastedProps> = ({
 
         <Card
           key={"avg"}
-          title={"average length"}
+          title={"average length of video"}
           value={info.avgDurationS}
           unit={"seconds"}
+          big={true}
         />
       </div>
       <Note

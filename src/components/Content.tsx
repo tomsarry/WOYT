@@ -5,6 +5,7 @@ import ContainerWasted from "./ContainerWasted";
 import ContainterSample from "./ContainerSample";
 import ContainerGeneral from "./ContainerGereral";
 import { getNumberYears } from "./Container";
+import FormFile from "./FormFile";
 
 type IProps = {};
 
@@ -17,10 +18,11 @@ type IState = {
   totalDurationS: number;
   avgDurationS: number;
   yearInfo: YearInfo[];
+  file: any;
 };
 
 class Content extends Component<IProps, IState> {
-  fileInput: any;
+  // fileInput: any;
   constructor(props: any) {
     super(props);
 
@@ -35,34 +37,16 @@ class Content extends Component<IProps, IState> {
       totalDurationS: 0,
       avgDurationS: 0,
       yearInfo: [],
+      file: null,
     };
 
-    this.fileInput = React.createRef();
+    // this.fileInput = React.createRef();
   }
 
-  handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-
-    const file = this.fileInput.current.files[0];
-
-    if (!file) {
-      // TODO display banner danger add file
-      return;
-    }
-
-    // checking that the input is .json file
-    var extension = file.name.split(".").pop();
-
-    if (extension !== "json") {
-      console.log("Error, not a json file");
-      // TODO display a danger banner
-      return;
-    }
-
-    // sending the file with a HTTP POST request
-    if (file != null) {
+  handleSubmit = (fileReceived: any) => {
+    if (fileReceived) {
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", fileReceived);
 
       axios
         .post(process.env.REACT_APP_API + "upload", formData)
@@ -87,24 +71,18 @@ class Content extends Component<IProps, IState> {
         })
         .catch((err) => {
           console.log("Error : " + err);
+          alert(err.toString());
         });
+    } else {
+      throw new Error("");
     }
-    event.preventDefault();
   };
 
   render() {
     const data = this.state;
     return (
       <React.Fragment>
-        <h1 className="title">Wasted on YT</h1>
-        <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-          <label>
-            Choisir un fichier :<input type="file" ref={this.fileInput}></input>
-          </label>
-          <br />
-          <br />
-          <button type="submit">Envoyer</button>
-        </form>
+        <FormFile callback={this.handleSubmit} />
 
         {data.totalNumber ? (
           <ContainerGeneral
@@ -141,4 +119,4 @@ class Content extends Component<IProps, IState> {
   }
 }
 
-export default Content;
+export { Content };

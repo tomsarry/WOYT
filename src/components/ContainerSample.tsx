@@ -31,7 +31,7 @@ const ContainterSample: React.SFC<ContainerSampleProps> = ({
       brokenLinksSample: brokenLinksSample,
       durationSample: durationSample,
     });
-  }, [nbSample]);
+  }, [nbSample, brokenLinksSample, durationSample]);
 
   const getSampleContent = () => {
     const titles = [
