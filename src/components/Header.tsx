@@ -6,7 +6,7 @@ export interface HeaderProps {}
 const Header: React.SFC<HeaderProps> = () => {
   return (
     <div className="header">
-      <a href="http://localhost:3000/" className="header-link">
+      <a href="/" className="header-link">
         <h1 className="header-title">Wasted on Youtube</h1>
       </a>
 
@@ -28,7 +28,7 @@ const Header: React.SFC<HeaderProps> = () => {
             className="header-link"
             rel="noopener noreferrer"
           >
-            <img src={githubSvg} className="svg" alt="github" />
+            <img src={githubSvg} className="svg svg-header" alt="github" />
           </a>
         </nav>
       </div>

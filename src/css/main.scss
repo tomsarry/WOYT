@@ -11,8 +11,8 @@ html {
 
 $primary: rgb(55, 59, 66);
 
-@import "card", "container", "fonts", "note", "mobile", "form", "header",
-  "footer";
+@import "card", "container", "fonts", "note", "form", "header", "footer",
+  "mobile";
 
 .title {
   color: red;
