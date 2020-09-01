@@ -10,7 +10,7 @@ const Header: React.SFC<HeaderProps> = () => {
         <h1 className="header-title">Wasted on Youtube</h1>
       </a>
 
-      <div className="header-links">
+      <div className="links">
         <nav className="nav-links">
           <a
             href="/"
@@ -20,12 +20,7 @@ const Header: React.SFC<HeaderProps> = () => {
           >
             help
           </a>
-          <a
-            href="/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="header-link"
-          >
+          <a href="#contact" className="header-link">
             contact
           </a>
           <a

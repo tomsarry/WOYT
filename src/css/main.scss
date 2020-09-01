@@ -5,6 +5,10 @@
   border: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 $primary: rgb(55, 59, 66);
 
 @import "card", "container", "fonts", "note", "mobile", "form", "header",
@@ -20,6 +24,6 @@ $primary: rgb(55, 59, 66);
   display: flex;
   align-items: center;
   flex-direction: column;
-  // justify-content: space-between;
+  justify-content: space-between;
   width: 100%;
 }
