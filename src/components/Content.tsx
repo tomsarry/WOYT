@@ -50,7 +50,7 @@ class Content extends Component<IProps, IState> {
 
       axios
         .post(
-          process.env.REACT_APP_API || "http://localhost:8080/" + "upload",
+          (process.env.REACT_APP_API || "http://localhost:8080/") + "upload",
           formData
         )
         // .post("http://localhost:8080/upload", formData)
