@@ -22,7 +22,6 @@ type IState = {
 };
 
 class Content extends Component<IProps, IState> {
-  // fileInput: any;
   constructor(props: any) {
     super(props);
 
@@ -39,8 +38,6 @@ class Content extends Component<IProps, IState> {
       yearInfo: [],
       file: null,
     };
-
-    // this.fileInput = React.createRef();
   }
 
   handleSubmit = (fileReceived: any) => {
