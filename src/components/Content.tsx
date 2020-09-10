@@ -6,6 +6,9 @@ import ContainterSample from "./ContainerSample";
 import ContainerGeneral from "./ContainerGereral";
 import { getNumberYears } from "./Container";
 import FormFile from "./FormFile";
+import { trackPromise } from "react-promise-tracker";
+import { usePromiseTracker } from "react-promise-tracker";
+import hourGlass from "../pics/hourglass.png";
 
 type IProps = {};
 
@@ -19,6 +22,18 @@ type IState = {
   avgDurationS: number;
   yearInfo: YearInfo[];
   file: any;
+};
+
+export interface LoaderProps {}
+
+const Loader: React.SFC<LoaderProps> = () => {
+  const { promiseInProgress } = usePromiseTracker();
+  return promiseInProgress ? (
+    <div className="loader-div">
+      <h1>Give me one second</h1>
+      <img src={hourGlass} alt="loader" className="loader"></img>
+    </div>
+  ) : null;
 };
 
 class Content extends Component<IProps, IState> {
@@ -45,35 +60,37 @@ class Content extends Component<IProps, IState> {
       let formData = new FormData();
       formData.append("file", fileReceived);
 
-      axios
-        .post(
-          (process.env.REACT_APP_API || "http://localhost:8080/") + "upload",
-          formData
-        )
-        // .post("http://localhost:8080/upload", formData)
-        .then((response) => {
-          var result = response.data;
-          // TESTING: see the response object
-          console.log(result);
+      trackPromise(
+        axios
+          .post(
+            (process.env.REACT_APP_API || "http://localhost:8080/") + "upload",
+            formData
+          )
+          // .post("http://localhost:8080/upload", formData)
+          .then((response) => {
+            var result = response.data;
+            // TESTING: see the response object
+            console.log(result);
 
-          const basicInfo = result.RequestBasicInfo;
-          const advInfo = result.RequestAdvancedInfo;
+            const basicInfo = result.RequestBasicInfo;
+            const advInfo = result.RequestAdvancedInfo;
 
-          this.setState({
-            totalNumber: basicInfo.Population,
-            sampleSize: basicInfo.SampleSize,
-            missingLinks: basicInfo.MissingLinks,
-            missingLinksSample: basicInfo.MissingLinksSample,
-            totalDurationSampleS: advInfo.TotalDurationSample,
-            totalDurationS: advInfo.TotalDurationSeconds,
-            yearInfo: advInfo.YearInfos,
-            avgDurationS: advInfo.AvgDuration,
-          });
-        })
-        .catch((err) => {
-          console.log("Error : " + err);
-          alert(err.toString());
-        });
+            this.setState({
+              totalNumber: basicInfo.Population,
+              sampleSize: basicInfo.SampleSize,
+              missingLinks: basicInfo.MissingLinks,
+              missingLinksSample: basicInfo.MissingLinksSample,
+              totalDurationSampleS: advInfo.TotalDurationSample,
+              totalDurationS: advInfo.TotalDurationSeconds,
+              yearInfo: advInfo.YearInfos,
+              avgDurationS: advInfo.AvgDuration,
+            });
+          })
+          .catch((err) => {
+            console.log("Error : " + err);
+            alert(err.toString());
+          })
+      );
     } else {
       throw new Error("");
     }
@@ -84,6 +101,8 @@ class Content extends Component<IProps, IState> {
     return (
       <React.Fragment>
         <FormFile callback={this.handleSubmit} />
+
+        <Loader />
 
         {data.totalNumber ? (
           <ContainerGeneral

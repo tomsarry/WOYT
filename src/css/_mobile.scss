@@ -22,6 +22,19 @@
     }
   }
 
+  .footer {
+    flex-direction: column;
+    &-contact {
+      border: none;
+      width: 100%;
+    }
+
+    &-info {
+      border-bottom: 2px solid white;
+      width: 100%;
+    }
+  }
+
   .card {
     height: 110px;
     width: 100px;
@@ -40,13 +53,13 @@
     width: 25px;
   }
 
-  .footer-info {
-    font-size: 0.9rem;
-  }
+  // .footer-info {
+  //   font-size: 0.9rem;
+  // }
 
-  .footer-title {
-    font-size: 1.2rem;
-  }
+  // .footer-title {
+  //   font-size: 1.2rem;
+  // }
 }
 
 @media (max-width: 470px) {

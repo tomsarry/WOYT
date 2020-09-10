@@ -8,7 +8,7 @@ const Footer: React.SFC<FooterProps> = () => {
   return (
     <div className="footer">
       <div className="footer-info">
-        <h3 className="footer-title">Information :</h3>
+        <h3 className="footer-title">Information</h3>
         <a
           href="https://github.com/tomsarry/WOYT/blob/master/LICENSE"
           className="header-link"
@@ -18,7 +18,7 @@ const Footer: React.SFC<FooterProps> = () => {
         August 2020
       </div>
       <div className="footer-contact" id="contact">
-        <h3 className="footer-title">Contact :</h3>
+        <h3 className="footer-title">Contact</h3>
 
         <div className="contact-svgs">
           <a

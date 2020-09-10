@@ -12,7 +12,7 @@ html {
 $primary: rgb(55, 59, 66);
 
 @import "card", "container", "fonts", "note", "form", "header", "footer",
-  "mobile";
+  "mobile", "loader";
 
 .title {
   color: red;
