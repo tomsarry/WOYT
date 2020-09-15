@@ -13,7 +13,7 @@ const Header: React.SFC<HeaderProps> = () => {
       <div className="links">
         <nav className="nav-links">
           <a
-            href="/"
+            href="https://github.com/tomsarry/WOYT#how-to-get-started"
             target="_blank"
             rel="noopener noreferrer"
             className="header-link"
@@ -24,7 +24,7 @@ const Header: React.SFC<HeaderProps> = () => {
             contact
           </a>
           <a
-            href="https://github.com/tomsarry"
+            href="https://github.com/tomsarry/WOYT"
             className="header-link"
             rel="noopener noreferrer"
           >
