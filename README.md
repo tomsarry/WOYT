@@ -1,9 +1,18 @@
 # Wasted on Youtube
 
+[![forthebadge](https://forthebadge.com/images/badges/made-with-go.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
 ## General information
 
-This project is the front-end of WOYT.
-The languages I used are react, TypeScript and SASS.
+Ever wondered how much of your time was spent on YouTube ?
+
+If so you are in luck because I may have a solution for you !
+
+WOYT if a fullStack app that will analyze your youtube history and compute an estimate of the time you spent looking at cute cat videos instead of studying for your degree.
+
+_Note: Use with care, the result can be quite shocking..._
 
 ## How to get started
 
